@@ -72,6 +72,7 @@ def main():
                 FROM table_name
                 WHERE condition; """)
         st.write(""" 
+                 
                  Note: A view always shows up-to-date data! The database engine recreates the view, every time a user queries it.""")
         st.write(result)
 
