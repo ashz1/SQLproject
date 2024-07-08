@@ -6,8 +6,8 @@ container1 = st.container(border=True)
 fdf = pd.read_csv('data/1.csv')
 adf = pd.read_csv('data/2.csv')
 conn = sqlite3.connect('ecom.db')
-st.title("SQL Database Operations Demo by Aashay")
-container.write("""Introduction:
+container.write("SQL Database Operations Demo by Aashay")
+container1.write("""Introduction:
 I've created a simple CRUD SQL demo app using SQLite3 to demonstrate SQL queries. This data is based on my experience as a business and data analyst in India, although I've altered it significantly for demonstration purposes.
 
 App Overview:
