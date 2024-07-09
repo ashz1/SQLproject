@@ -53,18 +53,16 @@ def create_database():
 
  # Function to aggregate data from a table
 def aggregate_data(table, columns, method):
-    cols = ", ".join([f'"{col}"' for col in columns])
     agg_query = ", ".join([f'{method}("{col}") AS {method}_{col.replace(" ", "_").replace("(", "").replace(")", "")}' for col in columns])
     if table == 'both':
-        query_flipkart = f'SELECT "Month", "Source", MIN("Month") AS Start_Month, MAX("Month") AS End_Month, {agg_query} FROM flipkart'
-        query_amazon = f'SELECT "Month", "Source", MIN("Month") AS Start_Month, MAX("Month") AS End_Month, {agg_query} FROM amazon'
+        query_flipkart = f'SELECT "Jan-21 to Mar-22" AS "Month", "Source", {agg_query} FROM flipkart'
+        query_amazon = f'SELECT "Jan-21 to Mar-22" AS "Month", "Source", {agg_query} FROM amazon'
         result_flipkart = pd.read_sql(query_flipkart, conn)
         result_amazon = pd.read_sql(query_amazon, conn)
-        result = pd.concat([result_flipkart, result_amazon])
+        return pd.concat([result_flipkart, result_amazon])
     else:
-        query = f'SELECT "Month", "Source", MIN("Month") AS Start_Month, MAX("Month") AS End_Month, {agg_query} FROM {table}'
-        result = pd.read_sql(query, conn)
-    return result
+        query = f'SELECT "Jan-21 to Mar-22" AS "Month", "Source", {agg_query} FROM {table}'
+        return pd.read_sql(query, conn)
 
 def main():
     # Create database and insert data from CSV if not already created
@@ -80,5 +78,5 @@ def main():
         st.header(f"Aggregation Results in {table_to_aggregate.capitalize()} using '{method}':")
         st.write(result)
 
-if __name__ == '__main__':
+if __name__ == '__')__:
     main()
