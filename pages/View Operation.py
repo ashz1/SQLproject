@@ -46,7 +46,7 @@ def main():
 
     if st.button("Click here to view"):
         result = view_data(table_to_view)
-        st.header(f"Data in {table_to_view.capitalize()} Table:")
+        st.header(f"View Operation in SQL")
 
         st.write("""
             ## SQL CREATE VIEW Statement
