@@ -26,7 +26,9 @@ You can combine multiple conditions in a WHERE clause using AND, OR, and NOT to 
 
                 
 AND requires both conditions to be true.
+                
 OR requires at least one condition to be true.
+                
 NOT negates a condition.""")
 # Read CSV files
 fdf = pd.read_csv('data/1.csv')
