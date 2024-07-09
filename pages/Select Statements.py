@@ -47,7 +47,7 @@ def main():
     if st.button("Click here to view"):
         result = view_data(table_to_view)
         st.header(f"Data in {table_to_view.capitalize()} Table:")
-
+        st.code("The SELECT statement is used to select data from a database.")
         if table_to_view == "both":
             sql_statement = "SELECT * FROM flipkart UNION SELECT * FROM amazon;"
         else:
