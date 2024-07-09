@@ -3,7 +3,32 @@ import streamlit as st
 import pandas as pd
 
 container = st.container(border=True)
-container.write("Update Operations")
+container.write("""
+    **Update Operations:**
+    
+    The UPDATE statement is used to modify existing records in a table. This operation is essential for keeping your data accurate and up-to-date. Here, you can select a table, specify the column you want to update, and provide the old and new values for the data.
+
+    **SQL Syntax:**
+    ```sql
+    UPDATE table_name
+    SET column1 = value1, column2 = value2, ...
+    WHERE condition;
+    ```
+
+    **Example:**
+    ```sql
+    UPDATE flipkart
+    SET "Month" = Jan-21
+    WHERE "Month" = Jan-24;
+    ```
+
+    - **Choose a table to update:** Select either 'flipkart' or 'amazon'.
+    - **Choose a column to update:** Choose the column you wish to modify.
+    - **Old value:** Specify the current value in the column.
+    - **New value:** Specify the new value you want to set.
+
+    Once you have provided these details, click the 'Update' button to execute the update operation.
+""")
 
 # Read CSV files
 fdf = pd.read_csv('data/1.csv')
