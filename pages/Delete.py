@@ -17,7 +17,7 @@ container.write("""
     **Example:**
     ```sql
     DELETE FROM flipkart
-    WHERE "Gross Transactions (Mn)" = 500;
+    WHERE "Month" = Jan-21;
     ```
 
     - **Choose a table to delete from:** Select either 'flipkart' or 'amazon'.
