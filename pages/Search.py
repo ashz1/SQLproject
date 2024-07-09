@@ -72,6 +72,7 @@ def main():
     st.write("### Select a table to search")
     table_to_search = st.selectbox("Choose a table to search", ["flipkart", "amazon", "both"], key="search_table")
 
+    # Get the columns of both tables
     columns_flipkart = fdf.columns.tolist()
     columns_amazon = adf.columns.tolist()
 
