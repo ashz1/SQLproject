@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 container = st.container(border=True)
 container.write("""
+                
         Filtering Results with WHERE:
                 The WHERE clause is used to filter records and return only those that meet specific conditions. This is useful for narrowing down the dataset to the relevant records you need for your analysis.
 
