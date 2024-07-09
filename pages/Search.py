@@ -4,9 +4,9 @@ import pandas as pd
 container = st.container(border=True)
 container.write("""
                 
-     Filtering Results with WHERE:
-             The WHERE clause is used to filter records and return only those that meet specific conditions. This is useful for narrowing down the dataset to the relevant records you need for your analysis.
-
+        Filtering Results with WHERE:
+            The WHERE clause is used to filter records and return only those that meet specific conditions. This is useful for narrowing down the dataset to the relevant records you need for your analysis.
+               
                 
         Pattern Matching with LIKE:
             The LIKE operator is used to search for a specified pattern in a column. It supports wildcards like % for any sequence of characters and _ for a single character. This is particularly useful for searching within text fields.
