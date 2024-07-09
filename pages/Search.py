@@ -53,7 +53,6 @@ def create_database():
     adf.to_sql('amazon', conn, if_exists="replace", index=False)
     conn.commit()
 
-# Function to search data in a table
 def search_data(table, column, value):
     if table == 'both':
         query_flipkart = f"SELECT * FROM flipkart WHERE {column} LIKE ?"
@@ -72,7 +71,19 @@ def main():
 
     st.write("### Select a table to search")
     table_to_search = st.selectbox("Choose a table to search", ["flipkart", "amazon", "both"], key="search_table")
-    column_to_search = st.text_input("Enter the column to search")
+
+    columns_flipkart = fdf.columns.tolist()
+    columns_amazon = adf.columns.tolist()
+
+    if table_to_search == 'both':
+        # For both tables, use the union of column names
+        common_columns = list(set(columns_flipkart) & set(columns_amazon))
+    elif table_to_search == 'flipkart':
+        common_columns = columns_flipkart
+    else:
+        common_columns = columns_amazon
+
+    column_to_search = st.selectbox("Choose a column to search", common_columns, key="search_column")
     value_to_search = st.text_input("Enter the value to search for")
 
     if st.button("Search"):
