@@ -41,11 +41,10 @@ def main():
     # Create database and insert data from CSV if not already created
     create_database()
 
-    # View operations
-    st.sidebar.header("View Operations: 'SELECT * FROM {table}'")
-    table_to_view = st.sidebar.selectbox("Choose a table to view", ["flipkart", "amazon", "both"], key="view_table")
+    st.write("### Select a table to view")
+    table_to_view = st.selectbox("Choose a table to view", ["flipkart", "amazon", "both"], key="view_table")
 
-    if st.sidebar.button("Click here to view"):
+    if st.button("Click here to view"):
         result = view_data(table_to_view)
         st.header(f"Data in {table_to_view.capitalize()} Table:")
 
