@@ -49,11 +49,11 @@ def main():
         st.header(f"Data in {table_to_view.capitalize()} Table:")
 
         if table_to_view == "both":
-            sql_statement = "CREATE VIEW combined AS SELECT * FROM flipkart UNION SELECT * FROM amazon;"
+            sql_statement = "SELECT * FROM flipkart UNION SELECT * FROM amazon;"
         else:
-            sql_statement = f"CREATE VIEW {table_to_view}_view AS SELECT * FROM {table_to_view};"
+            sql_statement = f"SELECT * FROM {table_to_view};"
 
-        st.write(f"### SQL CREATE VIEW Statement for {table_to_view.capitalize()} Table")
+        st.write(f"### SQL SELECT Statement for {table_to_view.capitalize()} Table")
         st.code(sql_statement, language='sql')
         
         st.write(result)
