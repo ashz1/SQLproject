@@ -11,7 +11,7 @@ container.write("""
                 
        
                 
-      **Pattern Matching with LIKE:**
+ **Pattern Matching with LIKE:**
                 
       The LIKE operator is used to search for a specified pattern in a column. It supports wildcards like % for any sequence of characters and _ for a single character. This is particularly useful for searching within text fields.
 
