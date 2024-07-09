@@ -78,5 +78,5 @@ def main():
         st.header(f"Aggregation Results in {table_to_aggregate.capitalize()} using '{method}':")
         st.write(result)
 
-if __name__ == '__')__:
+if __name__ == '__main__':
     main()
