@@ -1,8 +1,8 @@
 import sqlite3
 import streamlit as st
 import pandas as pd
-container = st.container()
-container.write("The SELECT statement is used to select data from a database.", border=True)
+container = st.container(border=True)
+container.write("The SELECT statement is used to select data from a database.")
 # Read CSV files
 fdf = pd.read_csv('data/1.csv')
 adf = pd.read_csv('data/2.csv')
