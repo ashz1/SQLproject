@@ -15,14 +15,13 @@ container.write("""
                 
       The LIKE operator is used to search for a specified pattern in a column. It supports wildcards like % for any sequence of characters and _ for a single character. This is particularly useful for searching within text fields.
 
-   % matches zero or more characters
+   " % " matches zero or more characters
                 
-   _ matches exactly one character
-                
-
-Combining Conditions with AND, OR, and NOT
+   " _ " matches exactly one character
                 
 
+Combining Conditions with AND, OR, and NOT:
+                
 You can combine multiple conditions in a WHERE clause using AND, OR, and NOT to create more complex queries.
 
                 
