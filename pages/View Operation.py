@@ -54,17 +54,13 @@ def main():
             In SQL, a view is a virtual table based on the result-set of an SQL statement.
             A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.
             You can add SQL statements and functions to a view and present the data as if the data were coming from one single table.
-            
-            ### CREATE VIEW Syntax
-            ```
-            CREATE VIEW view_name AS
-            SELECT column1, column2, ...
-            FROM table_name
-            WHERE condition;
-            ```
 
             Note: A view always shows up-to-date data! The database engine recreates the view every time a user queries it.
         """)
+        if table_to_view == "both":
+            sql_statement = "CREATE VIEW combined AS SELECT * FROM flipkart UNION SELECT * FROM amazon;"
+        else:
+            sql_statement = f"CREATE VIEW {table_to_view}_view AS SELECT * FROM {table_to_view};"
         st.write(result)
 
         conn.close()
