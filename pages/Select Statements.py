@@ -2,6 +2,7 @@ import sqlite3
 import streamlit as st
 import pandas as pd
 container = st.container()
+container.write("The SELECT statement is used to select data from a database.", border=True)
 # Read CSV files
 fdf = pd.read_csv('data/1.csv')
 adf = pd.read_csv('data/2.csv')
@@ -47,7 +48,7 @@ def main():
     if st.button("Click here to view"):
         result = view_data(table_to_view)
         st.header(f"Data in {table_to_view.capitalize()} Table:")
-        container.write("The SELECT statement is used to select data from a database.")
+        
         if table_to_view == "both":
             sql_statement = "SELECT * FROM flipkart UNION SELECT * FROM amazon;"
         else:
