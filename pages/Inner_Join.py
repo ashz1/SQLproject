@@ -9,7 +9,9 @@ def create_database(conn, fdf, adf):
 
 def join_tables(conn):
     query = """
-    SELECT * FROM flipkart INNER JOIN amazon
+    SELECT flipkart.*, amazon.*, flipkart.`Month` as Flipkart_Month, amazon.`Month` as Amazon_Month
+    FROM flipkart
+    INNER JOIN amazon
     ON flipkart.`Month` = amazon.`Month`
     """
     return pd.read_sql(query, conn)
