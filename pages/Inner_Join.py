@@ -10,7 +10,7 @@ def create_database(conn, fdf, adf):
 def join_tables(conn):
     query = """
     SELECT * FROM flipkart INNER JOIN amazon
-    ON flipkart.`common_column` = amazon.`common_column`
+    ON flipkart.`Month` = amazon.`Month`
     """
     return pd.read_sql(query, conn)
 
