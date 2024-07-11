@@ -35,8 +35,8 @@ def main():
 
 if __name__ == '__main__':
     # Read CSV files
-    fdf = pd.read_csv('/mnt/data/1.csv')
-    adf = pd.read_csv('/mnt/data/2.csv')
+    fdf = pd.read_csv('data/1.csv')
+    adf = pd.read_csv('data/2.csv')
     
     # Add prefixes to the columns of each table
     fdf_prefixed = fdf.add_prefix('FLP_')
