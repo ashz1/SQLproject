@@ -13,8 +13,8 @@ def window_functions():
     query = """
     SELECT
         FLP_Month,
-        FLP_Gross_Transactions AS Gross_Transactions,
-        AVG(FLP_Gross_Transactions) OVER (PARTITION BY FLP_Month) AS Avg_Gross_Transactions
+        FLP_Gross_Transactions (Mn) AS Gross_Transactions (Mn),
+        AVG(FLP_Gross_Transactions (Mn)) OVER (PARTITION BY FLP_Month) AS Avg_Gross_Transactions (Mn)
     FROM flipkart
     """
     result = pd.read_sql(query, conn)
