@@ -2,52 +2,49 @@ import sqlite3
 import streamlit as st
 import pandas as pd
 
-def create_database(conn, fdf, adf):
-    fdf.to_sql('flipkart', conn, if_exists="replace", index=False)
-    adf.to_sql('amazon', conn, if_exists="replace", index=False)
-    conn.commit()
-
-def join_tables(conn):
-    query = """
-    SELECT flipkart.*, amazon.*, flipkart.`Month` as Flipkart_Month, amazon.`Month` as Amazon_Month
-    FROM flipkart
-    INNER JOIN amazon
-    ON flipkart.`Month` = amazon.`Month`
-    """
-    return pd.read_sql(query, conn)
-
-def main():
-    st.write("## Inner Join")
-
-    container = st.container()
-    container.write("""
-    **Inner Join:**
-
-    An INNER JOIN returns records that have matching values in both tables.
-    """)
+def join_data():
+    # Connect to SQLite database
+    conn = sqlite3.connect('ecom.db')
 
     # Read CSV files
     fdf = pd.read_csv('data/1.csv')
     adf = pd.read_csv('data/2.csv')
 
-    # Add a new column to identify the source
-    fdf['Source'] = 'Flipkart'
-    adf['Source'] = 'Amazon'
+    # Add prefixes to the columns of each table
+    fdf_prefixed = fdf.add_prefix('FLP_')
+    adf_prefixed = adf.add_prefix('AMZN_')
 
-    # Reorder columns to place 'Source' after 'Month'
-    cols = fdf.columns.tolist()
-    cols.insert(cols.index('Month') + 1, cols.pop(cols.index('Source')))
-    fdf = fdf[cols]
-    adf = adf[cols]
+    # Merge the datasets
+    fdf_prefixed.to_sql('flipkart_prefixed', conn, if_exists="replace", index=False)
+    adf_prefixed.to_sql('amazon_prefixed', conn, if_exists="replace", index=False)
 
-    # Connect to SQLite database
-    conn = sqlite3.connect('ecom.db')
-    create_database(conn, fdf, adf)
-
-    result = join_tables(conn)
-    st.write(result)
-
+    join_query = """
+    SELECT flipkart_prefixed.FLP_Month as Month, flipkart_prefixed.*, amazon_prefixed.AMZN_Month, amazon_prefixed.*
+    FROM flipkart_prefixed
+    INNER JOIN amazon_prefixed
+    ON flipkart_prefixed.FLP_Month = amazon_prefixed.AMZN_Month
+    """
+    
+    result = pd.read_sql(join_query, conn)
+    
+    # Remove duplicate 'Month' columns and 'Source' columns
+    result = result.loc[:, ~result.columns.duplicated()]
+    result = result.drop(columns=['FLP_Source', 'AMZN_Source'], errors='ignore')
+    
     conn.close()
+    return result, join_query
+
+def main():
+    st.write("## Inner Join")
+    st.write("""
+    **Inner Join:** An INNER JOIN returns records that have matching values in both tables.
+    """)
+    
+    result, join_query = join_data()
+    st.write("### SQL Query")
+    st.code(join_query, language='sql')
+    st.write("### Join Result")
+    st.write(result)
 
 if __name__ == '__main__':
     main()
