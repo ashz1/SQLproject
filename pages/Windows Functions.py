@@ -13,8 +13,8 @@ def window_functions():
     query = """
     SELECT
         FLP_Month,
-        FLP_Sales,
-        AVG(FLP_Sales) OVER (PARTITION BY FLP_Month) as Avg_Sales
+        FLP_Gross_Transactions as Gross_Transactions,
+        AVG(FLP_Gross_Transactions) OVER (PARTITION BY FLP_Month) as Avg_Gross_Transactions
     FROM flipkart
     """
     result = pd.read_sql(query, conn)
@@ -35,8 +35,8 @@ def main():
 
 if __name__ == '__main__':
     # Read CSV files
-    fdf = pd.read_csv('data/1.csv')
-    adf = pd.read_csv('data/2.csv')
+    fdf = pd.read_csv('/mnt/data/1.csv')
+    adf = pd.read_csv('/mnt/data/2.csv')
     
     # Add prefixes to the columns of each table
     fdf_prefixed = fdf.add_prefix('FLP_')
